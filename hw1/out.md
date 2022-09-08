@@ -26,7 +26,7 @@ The following is the description of the variables in the dataset.
 We are interested in the following preferences model:
 
 $$
-U_{ij} = \beta_1 p_j + \beta'_2 X_j + \xi_j + \varepsilon_{ij}
+U_{ij} = \beta_1 p_j + \beta'_2 X\_j + \xi_j + \varepsilon_{ij}
 $$
 
 where the subscripts $i$ and $j$ refer to customer $i$ and product $j$ The variable $p_j$ denotes the product price logarithm. The vector $X_j$ groups exogenous characteristics that include `size`, `speed`, `branded`. As usual, $\xi_j$ captures unobserved characteristics of the product $j$ that are relevant for the customer’s decision. Finally, $\varepsilon_{ij}$ is an idiosyncratic Type 1 Extreme Value Error term. The utility of buying the outside good is $\varepsilon_{i0}$.
