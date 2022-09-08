@@ -9,7 +9,7 @@ from models.OLS import OLS
 
 # print(aggregate[['y', 'constant', 'price', 'size', 'speed', 'branded']].describe())
 
-# print(individual.describe())
+print(individual[individual['visitid'] == 1]['choice'].sum())
 
 OLS(aggregate[['price', 'size', 'speed', 'branded']],
     aggregate[['y']],

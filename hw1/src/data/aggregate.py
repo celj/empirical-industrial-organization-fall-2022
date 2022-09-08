@@ -58,3 +58,7 @@ aggregate.drop([0], axis=0, inplace=True)
 aggregate['log_price'] = np.log(aggregate['price'])
 
 aggregate['log_wholecost'] = np.log(aggregate['wholecost'])
+
+individual.loc[individual['choice'] == 0, 'product'] == 0
+
+individual['intercept'] = 1
