@@ -44,7 +44,7 @@ products = list(individual['product'].unique())
 
 
 def nelder_mead(f, x_start,
-                step=0.001, no_improve_thr=10e-6,
+                step=0.1, no_improve_thr=10e-6,
                 no_improv_break=10, max_iter=0,
                 alpha=1., gamma=2., rho=-0.5, sigma=0.5):
 
