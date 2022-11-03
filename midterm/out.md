@@ -26,13 +26,13 @@ $$
 
 where $D_i$ is a $d\times1$ vector of demographic variables, $\Gamma$ is a $2\times d$ matrix of coefficients that measure how taste varies with demographics, and $\nu_i$ is a $2\times1$ vector of unobserved individual characteristics determining taste, where $\nu_i \sim F_\nu(\cdot)$, with $F_\nu(\cdot)$ a distribution function.
 
-Following Train (2009, 3.1), we can write the probability that worker $i$ chooses PFA $j$, $s_{ij}$, as follows:
+Following Train (2009, 3.1), we can write the probability that worker $i$ chooses PFA $j$, $P_{ij}$, as follows:
 
 $$
 \begin{align}
-s_{ij} &= P(u_{ij} \geq u_{ik},\ \forall j \neq k) \\
+P_{ij} &= P(u_{ij} \geq u_{ik},\ \forall j \neq k) \\
 &= P(\varepsilon_{ij} - \varepsilon_{ik} \geq \omega_{ik} - \omega_{ij}) \\
-&= \frac{\exp(\omega_{ij})}{\displaystyle \sum_{j \in J} \exp(\omega_{ik})}
+&= \frac{\exp(\omega_{ij})}{\displaystyle \sum_j \exp(\omega_{ij})}
 \end{align}
 $$
 
@@ -42,12 +42,12 @@ Additionally, we can express the price elasticity of the demand for PFA $j$, $\e
 
 $$
 \begin{align}
-\eta_{j, p_j} &= \frac{p_j}{s_{ij}} \cdot \frac{\partial s_{ij}}{\partial p_j} \\
-&= p_j (1 - s_{ij}) \cdot \frac{\partial \omega_{ij}}{\partial p_j} \\
-&= - \alpha_i p_j y_i (1 - s_{ij}), \\ \\
-\eta_{j, R_k} &= \frac{R_k}{s_{ij}} \cdot \frac{\partial s_{ij}}{\partial R_k} \\
-&= - R_k s_{ik} \cdot \frac{\partial \omega_{ik}}{\partial R_k} \\
-&= - \beta_i R_k s_{ik}.
+\eta_{j, p_j} &= \frac{p_j}{P_{ij}} \cdot \frac{\partial P_{ij}}{\partial p_j} \\
+&= p_j (1 - P_{ij}) \cdot \frac{\partial \omega_{ij}}{\partial p_j} \\
+&= - \alpha_i p_j y_i (1 - P_{ij}), \\ \\
+\eta_{j, R_k} &= \frac{R_k}{P_{ij}} \cdot \frac{\partial P_{ij}}{\partial R_k} \\
+&= - R_k P_{ik} \cdot \frac{\partial \omega_{ik}}{\partial R_k} \\
+&= - \beta_i R_k P_{ik}.
 \end{align}
 $$
 
@@ -57,8 +57,8 @@ Subsequently, with this setup, we can describe the log-likelihood of the model, 
 
 $$
 \begin{align}
-\mathcal{L} (\cdot) &= \sum_i \sum_j \mathbf{1}_{ij} \log (s_{ij}) \\
-&= \sum_i \sum_j \left( \frac{\exp(\omega_{ij})}{\displaystyle \sum_{j \in J} \exp(\omega_{ik})} \right).
+\mathcal{L} (\cdot) &= \sum_i \sum_j \mathbf{1}_{ij} \log (P_{ij}) \\
+&= \sum_i \sum_j \left( \frac{\exp(\omega_{ij})}{\displaystyle \sum_j \exp(\omega_{ij})} \right).
 \end{align}
 $$
 
@@ -93,16 +93,16 @@ $$
 
 is the indirect utility associated to choosing a portfolio conditional on a particular PFA (i.e., second level). Note that $u_{ig \mid j} = u_{g \mid j}$, $\forall i$.
 
-Furthermore, as shown in Train (2009, 4.2.3), the probability of choosing PFA $j$ and portfolio $g$, $s_{ijg}$, can be expressed as the product of a marginal probability of choosing PFA $j$ and a conditional probability of choosing portfolio $g$ conditional on PFA $j$. That is, $s_{ijg} = s_{ij} \cdot s_{ig|j}$, where
+Furthermore, as shown in Train (2009, 4.2.3), the probability of choosing PFA $j$ and portfolio $g$, $P_{ijg}$, can be expressed as the product of a marginal probability of choosing PFA $j$ and a conditional probability of choosing portfolio $g$ conditional on PFA $j$. That is, $P_{ijg} = P_{ij} \cdot P_{ig|j}$, where
 
 $$
-s_{ij} = \frac{\exp \left( u_{ij} + \lambda_j I_{ij} \right)}{\displaystyle \sum_j \exp \left( u_{ij} + \lambda_j I_{ij} \right)} \qquad \qquad \text{(upper level model)}
+P_{ij} = \frac{\exp \left( u_{ij} + \lambda_j I_{ij} \right)}{\displaystyle \sum_j \exp \left( u_{ij} + \lambda_j I_{ij} \right)} \qquad \qquad \text{(upper level model)}
 $$
 
 and
 
 $$
-s_{ig|j} = \frac{ \exp \left( \displaystyle \frac{u_{ig \mid j}}{\lambda_j} \right) }{ \displaystyle \sum_g \exp \left( \displaystyle \frac{u_{ig \mid j}}{\lambda_j} \right) }  \qquad \qquad \text{(lower level model)}
+P_{ig|j} = \frac{ \exp \left( \displaystyle \frac{u_{ig \mid j}}{\lambda_j} \right) }{ \displaystyle \sum_g \exp \left( \displaystyle \frac{u_{ig \mid j}}{\lambda_j} \right) }  \qquad \qquad \text{(lower level model)}
 $$
 
 with
@@ -116,15 +116,18 @@ Finally, we can express the price elasticity of the demand for PFA $j$, $\eta_{j
 
 $$
 \begin{align}
-\eta_{j, p_j} &= \frac{p_j}{s_{ijg}} \cdot \frac{\partial s_{ijg}}{\partial p_j} \\
-&= \frac{p_j}{s_{ijg}} \left( s_{ig \mid j} \cdot \frac{\partial s_{ij}}{\partial p_j} + s_{ij} \cdot \frac{\partial s_{ig \mid j}}{\partial p_j} \right) \\
-&= p_j \left( \frac{s_{ig \mid j}}{s_{ijg}} \right) \frac{\partial s_{ij}}{\partial p_j} \\
-&= p_j \left( \frac{s_{ig \mid j} (1 - s_{ij}) s_{ij}}{s_{ijg}} \right) \frac{\partial u_{ij}}{\partial p_j} \\
-&= - \alpha p_j y_i (1 - s_{ij}), \\ \\
-\eta_{j, p_k} &= \frac{p_k}{s_{ijg}} \cdot \frac{\partial s_{ijg}}{\partial p_k} \\
-&= \frac{p_k}{s_{ijg}} \left( s_{ig \mid j} \cdot \frac{\partial s_{ij}}{\partial p_k} + s_{ij} \cdot \frac{\partial s_{ig \mid j}}{\partial p_k} \right) \\
-&= p_k \left( \frac{s_{ig \mid j}}{s_{ijg}} \right) \frac{\partial s_{ij}}{\partial p_k} \\
-&= - p_k \left( \frac{s_{ig \mid j} \cdot s_{ij} \cdot s_{ik}}{s_{ijg}} \right) \frac{\partial u_{ik}}{\partial p_k} \\
-&= \alpha p_k y_i s_{ik}.
+\eta_{j, p_j} &= \frac{p_j}{P_{ijg}} \cdot \frac{\partial P_{ijg}}{\partial p_j} \\
+&= \frac{p_j}{P_{ijg}} \left( P_{ig \mid j} \cdot \frac{\partial P_{ij}}{\partial p_j} + P_{ij} \cdot \frac{\partial P_{ig \mid j}}{\partial p_j} \right) \\
+&= p_j \left( \frac{P_{ig \mid j}}{P_{ijg}} \right) \frac{\partial P_{ij}}{\partial p_j} \\
+&= p_j \left( \frac{P_{ig \mid j} (1 - P_{ij}) P_{ij}}{P_{ijg}} \right) \frac{\partial u_{ij}}{\partial p_j} \\
+&= - \alpha p_j y_i (1 - P_{ij}), \\ \\
+\eta_{j, p_k} &= \frac{p_k}{P_{ijg}} \cdot \frac{\partial P_{ijg}}{\partial p_k} \\
+&= \frac{p_k}{P_{ijg}} \left( P_{ig \mid j} \cdot \frac{\partial P_{ij}}{\partial p_k} + P_{ij} \cdot \frac{\partial P_{ig \mid j}}{\partial p_k} \right) \\
+&= p_k \left( \frac{P_{ig \mid j}}{P_{ijg}} \right) \frac{\partial P_{ij}}{\partial p_k} \\
+&= - p_k \left( \frac{P_{ig \mid j} \cdot P_{ij} \cdot P_{ik}}{P_{ijg}} \right) \frac{\partial u_{ik}}{\partial p_k} \\
+&= \alpha p_k y_i P_{ik}.
 \end{align}
 $$
+Note that these are all individual elasticities. We may need to consider individuals independent from each other such that it stays asymptotically unbiased and we can approximate aggregate elasticities by mean.
+
+Alternatively, we may integrate individual level to aggregate using Monte Carlo.
