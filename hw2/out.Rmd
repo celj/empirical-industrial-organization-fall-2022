@@ -1,0 +1,36 @@
+---
+title: |
+  | Solving and Estimating
+  | an Incomplete Information Entry Game
+shorttitle: Empirical Industrial Organization
+shortauthors: Lezama
+author:
+- name: Carlos Enrique Lezama Jacinto
+  affiliation: |
+    |
+    | Instituto Tecnológico
+    | Autónomo de México
+  address: |
+    |
+    | clezamaj\@itam.mx
+classoption: [cm, linguex]
+output: 
+  rticles::glossa_article:
+    citation_package: natbib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Suppose there are two firms, $A$ and $B$, that simultaneously decide whether to enter in the market $m \in \{1, \dots, M\}$ or not. If firm $i \in \{A, B\}$ decides to enter, its profits are given by
+
+$$
+\Pi_{i, m} = X_{i, m} \beta - D_{j, m} \alpha + \nu_m + u_{i, m}, \qquad \forall\ i, j \in \{A, B\},\ i \neq j
+$$
+
+where $X_{i, m}$ is an observable characteristic of firm $i$ that boosts profits in market $m$, $D_{j, m} \in \{0, 1\}$ is $j$'s decision of entering the market, $\nu_m$ is a market fixed effect, and $u_{i, m}$ captures unobserved idiosyncratic shocks to profits.
+
+On the other hand, if firm $i$ decides not to enter market $m$, its profits are zero.
+
+Notice that $u_{i, m}$ is observed by $i$ but not by its opponent $j$. Consequently, the firms are playing an incomplete information entry game.
