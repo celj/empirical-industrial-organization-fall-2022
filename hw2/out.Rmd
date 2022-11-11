@@ -34,3 +34,43 @@ where $X_{i, m}$ is an observable characteristic of firm $i$ that boosts profits
 On the other hand, if firm $i$ decides not to enter market $m$, its profits are zero.
 
 Notice that $u_{i, m}$ is observed by $i$ but not by its opponent $j$. Consequently, the firms are playing an incomplete information entry game.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
