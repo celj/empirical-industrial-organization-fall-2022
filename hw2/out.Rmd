@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE)
 Suppose there are two firms, $A$ and $B$, that simultaneously decide whether to enter in the market $m \in \{1, \dots, M\}$ or not. If firm $i \in \{A, B\}$ decides to enter, its profits are given by
 
 $$
-\Pi_{i, m} = X_{i, m} \beta - D_{j, m} \alpha + \nu_m + u_{i, m}, \qquad \forall\ i, j \in \{A, B\},\ i \neq j
+\Pi_{i, m} = X_{i, m} \beta - D_{j, m} \alpha + \nu_m + u_{i, m}, \quad \forall\ i, j \in \{A, B\},\ i \neq j
 $$
 
 where $X_{i, m}$ is an observable characteristic of firm $i$ that boosts profits in market $m$, $D_{j, m} \in \{0, 1\}$ is $j$'s decision of entering the market, $\nu_m$ is a market fixed effect, and $u_{i, m}$ captures unobserved idiosyncratic shocks to profits.
