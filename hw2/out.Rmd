@@ -17,6 +17,8 @@ classoption: [cm, linguex]
 output: 
   rticles::glossa_article:
     citation_package: natbib
+    includes:
+      in_header: "preamble.tex"
 ---
 
 ```{r setup, include=FALSE}
@@ -33,43 +35,47 @@ where $X_{i, m}$ is an observable characteristic of firm $i$ that boosts profits
 
 On the other hand, if firm $i$ decides not to enter market $m$, its profits are zero.
 
-Notice that $u_{i, m}$ is observed by $i$ but not by its opponent $j$. Consequently, the firms are playing an incomplete information entry game.
+Notice that $u_{i, m}$ is observed by $i$ but not by its opponent $j$. Consequently, the firms are playing an incomplete information entry game described below.
 
+\begin{center}
+\begin{tabular}{cc|c|c|}
+	& \multicolumn{1}{c}{} & \multicolumn{2}{c}{Firm $B$}\\
+	                        & \multicolumn{1}{c}{} & \multicolumn{1}{c}{Enter}                             & \multicolumn{1}{c}{Do not enter}                      \\\cline{3-4}
+	\multirow{2}*{Firm $A$} & Enter                & $\left(\Pi_{A ,m}, \Pi_{B, m}\right)$                 & $\left( X_{A, m} \beta + \nu_m + u_{A, m}, 0 \right)$ \\\cline{3-4}
+	                        & Do not enter         & $\left( 0, X_{B, m} \beta + \nu_m + u_{B, m} \right)$ & $\left(0, 0\right)$                                   \\\cline{3-4}
+\end{tabular}
+\end{center}
 
+Thus, the expected profits of firm $A$ if it decides to enter market $m$ are
 
+\begin{align*}
+	\ev\left(\Pi_{A, m}\right) & = \left( D_{A, m} \right) \left( p(D_{B, m} = 1) \left( X_{A, m} \beta - \alpha + \nu_m + u_{A, m} \right) \right. \\ &+ \left. \left( 1 - p(D_{B, m} = 1)\right) \left( X_{A, m} \beta - \alpha + u_{A, m} \right) \right) \\
+	&+ \left( 1 - D_{A, m} \right) \cdot 0
+\end{align*}
 
+where, $\forall\ i, j \in \{A, B\}$, $i \neq j$, the condition for firm $i$ to enter the market in terms of its expected profits is defined as follows:
 
+\begin{align*}
+	D_{i, m} & = \mathbf{1} \left( p(D_{j, m} = 1) \left( X_{i, m} \beta - \alpha + \nu_m + u_{i, m} \right) \right. \\ &+ \left. \left( 1 - p(D_{j, m} = 1) \right) \left( X_{i, m} \beta + \nu_m + u_{i, m} \right) > 0 \right) .
+\end{align*}
 
+Namely, the probability that firm $A$ enters market $m$ is
 
+\begin{align*}
+	p \left(D_{A, m = 1}\right) & = p \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m + u_{A, m} > 0 \right)              \\
+	                                & = p \left( u_{A, m} > - \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m \right) \right) \\
+	                                & = \Phi \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m \right)                              
+\end{align*}
 
+where $\Phi = \dnorm (0, 1)$. Recall that we assume $u_{i, m} \sim \dnorm(0, 1)$, $\forall\ i, j \in \{A, B\}$, $i \neq j$.
 
+Similarly,
 
+$$
+p \left( D_{B, m} = 1 \right) = \Phi \left( X_{B, m} \beta - \alpha p \left( D_{A, m} = 1 \right) + \nu_m \right) .
+$$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Furthermore, we propose the following parametrization to simulate our model:
 
 
 
