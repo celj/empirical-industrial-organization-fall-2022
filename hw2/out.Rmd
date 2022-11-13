@@ -134,7 +134,7 @@ With the generalized method of moments (GMM), we may want to consider up to the 
 1. Compute $\theta^{(0)} = \arg\min_\theta \bar{g}(\theta)'\bar{g}(\theta)$
 2. Compute the heteroskedasticity and auto-correlation consistent matrix $\hat{\Omega} \left(\theta^{(0)}\right)$ like the one proposed by @HAC
 3. Compute $\theta^{(0)} = \arg\min_\theta \bar{g}(\theta)'\left[\hat{\Omega} \left(\theta^{(0)}\right)\right]^{-1}\bar{g}(\theta)$
-4. If $\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \text{tol}$, stop. Else, $\theta^{(0)} = \theta^{(1)}$ and repeat from 2
+4. If $\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \varepsilon$, stop; else, $\theta^{(0)} = \theta^{(1)}$ and repeat from 2
 5. Define $\hat{\theta} = \theta^{(1)}$
 
 \newpage

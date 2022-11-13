@@ -253,8 +253,8 @@ describe an algorithm that performs GMM estimation as follows:
   \(\theta^{(0)} = \arg\min_\theta \bar{g}(\theta)'\left[\hat{\Omega} \left(\theta^{(0)}\right)\right]^{-1}\bar{g}(\theta)\)
 \item
   If
-  \(\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \text{tol}\),
-  stop. Else, \(\theta^{(0)} = \theta^{(1)}\) and repeat from 2
+  \(\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \varepsilon\),
+  stop; else, \(\theta^{(0)} = \theta^{(1)}\) and repeat from 2
 \item
   Define \(\hat{\theta} = \theta^{(1)}\)
 \end{enumerate}
