@@ -138,6 +138,3 @@ With the generalized method of moments (GMM), we may want to consider up to the 
 5. Define $\hat{\theta} = \theta^{(1)}$
 
 \newpage
-
-
-
