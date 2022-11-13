@@ -80,6 +80,8 @@ $$
 
 Henceforth, let $p_{i, m} = p(D_{i, m} = 1)$.
 
+\newpage
+
 # Simulations
 
 We propose the following parametrization to simulate our model:
@@ -102,6 +104,8 @@ With this setup, we obtain the following entry probabilities for markets 1, 101,
 
 Thus, firm $A$ enters 165 markets while firm $B$ enters 179. However, recall that Bayesian Nash equilibrium allows for ex-post regret where profits are negative succeeding the decision of entry. In our case, firm $A$ regrets 41 times while $B$ regrets 48---24.85% and 26.82%, respectively.
 
+\newpage
+
 # Maximum Likelihood
 
 In pursuit of our estimation objectives for $\theta = (\alpha, \beta, \gamma)$ such that $\gamma$ appears in $\nu_m := \gamma \times \mathbf{1} \{ m \leq 100 \}$---i.e., we also want to estimate a common market fixed effect for the first 100 markets---we define our log-likelihood function as shown below.
@@ -121,6 +125,8 @@ The maximum likelihood estimates, as well as their standard errors, are shown in
 |  $\beta$  |  0.1915  | 0.0470 |
 | $\gamma$  |  0.7421  | 0.1865 |
 
+\newpage
+
 # GMM
 
 With the generalized method of moments (GMM), we may want to consider up to the fourth moment to ensure over-identification. This way, we can describe an algorithm that performs GMM estimation as follows:
@@ -131,7 +137,7 @@ With the generalized method of moments (GMM), we may want to consider up to the 
 4. If $\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \text{tol}$, stop. Else, $\theta^{(0)} = \theta^{(1)}$ and repeat from 2
 5. Define $\hat{\theta} = \theta^{(1)}$
 
-
+\newpage
 
 
 
