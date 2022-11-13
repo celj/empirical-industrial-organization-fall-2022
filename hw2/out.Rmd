@@ -14,6 +14,7 @@ author:
     |
     | clezamaj\@itam.mx
 classoption: [cm, linguex]
+bibliography: ref.bib
 output: 
   rticles::glossa_article:
     citation_package: natbib
@@ -24,6 +25,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+# Setup
 
 Suppose there are two firms, $A$ and $B$, that simultaneously decide whether to enter in the market $m \in \{1, \dots, M\}$ or not. If firm $i \in \{A, B\}$ decides to enter, its profits are given by
 
@@ -62,7 +65,7 @@ where, $\forall\ i, j \in \{A, B\}$, $i \neq j$, the condition for firm $i$ to e
 Namely, the probability that firm $A$ enters market $m$ is
 
 \begin{align*}
-	p \left(D_{A, m = 1}\right) & = p \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m + u_{A, m} > 0 \right)              \\
+	p \left(D_{A, m} = 1\right) & = p \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m + u_{A, m} > 0 \right)              \\
 	                                & = p \left( u_{A, m} > - \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m \right) \right) \\
 	                                & = \Phi \left( X_{A, m} \beta - \alpha p \left( D_{B, m} = 1 \right) + \nu_m \right)                              
 \end{align*}
@@ -75,7 +78,59 @@ $$
 p \left( D_{B, m} = 1 \right) = \Phi \left( X_{B, m} \beta - \alpha p \left( D_{A, m} = 1 \right) + \nu_m \right) .
 $$
 
-Furthermore, we propose the following parametrization to simulate our model:
+Henceforth, let $p_{i, m} = p(D_{i, m} = 1)$.
+
+# Simulations
+
+We propose the following parametrization to simulate our model:
+
+\begin{align*}
+&\alpha =  2 && X_{A,m} \sim \dunif(0, 1) \\
+&\beta = 0.2 && X_{B, m} \sim \dunif(0.1, 1.4) \\
+&\nu_m = 0.9 \times \mathbf{1} \{ m \leq 100 \} && u_{A, m}, u_{B, m} \overset{\iid}{\sim} \dnorm(0, 1)
+\end{align*}
+
+With this setup, we obtain the following entry probabilities for markets 1, 101, 201, 301, and 401.
+
+| $m$ | $p_{A, m}$ | $p_{B, m}$ |
+| :-: | :--------: | :--------: |
+|  1  |   0.6019   |   0.4001   |
+| 101 |   0.3172   |   0.2766   |
+| 201 |   0.3375   |   0.2805   |
+| 301 |   0.3812   |   0.2503   |
+| 401 |   0.2590   |   0.3362   |
+
+Thus, firm $A$ enters 165 markets while firm $B$ enters 179. However, recall that Bayesian Nash equilibrium allows for ex-post regret where profits are negative succeeding the decision of entry. In our case, firm $A$ regrets 41 times while $B$ regrets 48---24.85% and 26.82%, respectively.
+
+# Maximum Likelihood
+
+In pursuit of our estimation objectives for $\theta = (\alpha, \beta, \gamma)$ such that $\gamma$ appears in $\nu_m := \gamma \times \mathbf{1} \{ m \leq 100 \}$---i.e., we also want to estimate a common market fixed effect for the first 100 markets---we define our log-likelihood function as shown below.
+
+\begin{align*}
+\log\mathcal{L}_{m} (\theta \mid \cdot) &= \sum_{m = 1}^{M} \left[ D_{A, m} D_{B, m} \log(p_{A, m} p_{B, m}) \right. \\
+&+ D_{A, m} (1 - D_{B, m}) \log(p_{A, m} (1 - p_{B, m})) \\
+&+ (1 - D_{A, m}) D_{B, m} \log((1 - p_{A, m}) p_{B, m}) \\
+&+ \left. (1 - D_{A, m}) (1 - D_{B, m}) \log((1 - p_{A, m}) (1 - p_{B, m})) \right]
+\end{align*}
+
+The maximum likelihood estimates, as well as their standard errors, are shown in the following table.
+
+| Parameter | Estimate |   SE   |
+| :-------: | :------: | :----: |
+| $\alpha$  |  2.0347  | 0.1813 |
+|  $\beta$  |  0.1915  | 0.0470 |
+| $\gamma$  |  0.7421  | 0.1865 |
+
+# GMM
+
+With the generalized method of moments (GMM), we may want to consider up to the fourth moment to ensure over-identification. This way, we can describe an algorithm that performs GMM estimation as follows:
+
+1. Compute $\theta^{(0)} = \arg\min_\theta \bar{g}(\theta)'\bar{g}(\theta)$
+2. Compute the heteroskedasticity and auto-correlation consistent matrix $\hat{\Omega} \left(\theta^{(0)}\right)$ like the one proposed by @HAC
+3. Compute $\theta^{(0)} = \arg\min_\theta \bar{g}(\theta)'\left[\hat{\Omega} \left(\theta^{(0)}\right)\right]^{-1}\bar{g}(\theta)$
+4. If $\left\lVert \theta^{(0)} - \theta^{(1)} \right\rVert < \text{tol}$, stop. Else, $\theta^{(0)} = \theta^{(1)}$ and repeat from 2
+5. Define $\hat{\theta} = \theta^{(1)}$
+
 
 
 
