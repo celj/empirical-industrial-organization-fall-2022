@@ -1,0 +1,35 @@
+---
+title: 'Social capital estimation with exponential random graphs in the labor market'
+author: Carlos Lezama
+date: November 24, 2022
+output:
+    revealjs::revealjs_presentation:
+        background_transition: fade
+        center: true
+        css: out.css
+        highlight: haddock
+        incremental: true
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+        reveal_options:
+          previewLinks: true
+          progress: true
+          slideNumber: false
+        self_contained: true
+        theme: night
+        transition: slide
+---
+
+# Research question
+
+<b class="emphasized">What is the impact of private higher education in the Mexican labor market?</b>
+
+# Motivation
+
+- To question the distinct higher education models and their relationship with firms within the <b class="emphasized">labor market</b>
+- To purport that there exists a higher probability to be hired by a <b class="emphasized">top-level firm</b> if you graduated from a <b class="emphasized">private university</b>
+- To model a relationship between schools, individual and firms using <b class="emphasized">random graphs</b>
+- To build a brand new <b class="emphasized">inequality index</b> based on education to be potentially replicated in developing economies
+
+# Example
+
+## {data-background-iframe="https://observablehq.com/embed/@utopiah/visualizating-social-vr-contact-tracing?cells=chartFromUrl"}
