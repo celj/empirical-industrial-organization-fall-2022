@@ -1782,7 +1782,7 @@ graphs in the labor market</h1>
 </section>
 
 <section id="research-question" class="title-slide slide level1">
-<h1>Research question</h1>
+<h1>Research Question</h1>
 <p><b class="emphasized">What is the impact of private higher education
 in the Mexican labor market?</b></p>
 </section>
@@ -1804,14 +1804,94 @@ potentially replicated in developing economies</li>
 </ul>
 </section>
 
-<section>
-<section id="example" class="title-slide slide level1">
-<h1>Example</h1>
+<section id="social-capital-theory" class="title-slide slide level1">
+<h1>Social Capital Theory</h1>
+<ol type="1">
+<li class="fragment"><b class="emphasized">Resource:</b> anything that
+allows someone to get something done</li>
+<li class="fragment"><b class="emphasized">Topology:</b> people and
+their relationships — who determine the quality, diversity, and amount
+of resources you can potentially access</li>
+<li class="fragment"><b class="emphasized">Nature of relationships:</b>
+you, your preferences, and your ability to build a relationship — trust,
+trustworthiness, norms, obligations, expectations, or feelings of
+closeness</li>
+</ol>
+</section>
 
+<section id="literature-review" class="title-slide slide level1">
+<h1>Literature Review</h1>
+<ul>
+<li class="fragment">A significant fraction of all jobs are found
+through <b class="emphasized">social networks</b></li>
+<li class="fragment">The <b class="emphasized">employment situation</b>
+of individuals that are connected, either directly or indirectly, is
+correlated</li>
+<li class="fragment">The <b class="emphasized">topology</b> of the
+network influences the length and correlation of
+<b class="emphasized">unemployment</b> among individuals</li>
+<li class="fragment">The size of the space of
+<b class="emphasized">estimation can be greatly reduced</b> by
+reformulating network formation as a distribution over the space of
+sufficient statistics instead of the space of networks</li>
+</ul>
+</section>
+
+<section>
+<section id="model" class="title-slide slide level1">
+<h1>Model</h1>
+<p>Probability of observing network <span class="math inline">\(g\)</span></p>
+<p><span class="math display">\[
+p (g; \beta) = \frac{\exp(\beta \cdot S(g))}{\sum_{g&#39;} \exp(\beta
+\cdot S(g&#39;))},
+\]</span></p>
+<p>where <span class="math inline">\(S(g) = \left[ S_{\circ} (g),
+S_{-}(g), S_{\triangle} (g) \right]\)</span></p>
 </section>
 <section id="section" class="slide level2" data-background-iframe="https://observablehq.com/embed/@utopiah/visualizating-social-vr-contact-tracing?cells=chartFromUrl">
 <h2 data-background-iframe="https://observablehq.com/embed/@utopiah/visualizating-social-vr-contact-tracing?cells=chartFromUrl"></h2>
+</section>
+<section id="the-mle-solves" class="slide level2">
+<h2>The MLE solves</h2>
+<p><span class="math display">\[
+\hat{\beta} = \arg\max_\beta \beta \cdot s - \log \left[ \sum_{s&#39;}
+\exp(\beta \cdot s&#39;) \right]
+\]</span></p>
 </section></section>
+<section id="data" class="title-slide slide level1">
+<h1>Data</h1>
+<p>The data may not be publicly available, so we need to conduct a
+<b class="emphasized">survey</b> across multiple universities to obtain
+it</p>
+<ol type="1">
+<li class="fragment">Where do/did you study?</li>
+<li class="fragment">To which of the following firms have you applied
+for a job? <span class="math inline">\((A)\)</span></li>
+<li class="fragment">From which of the above have you received a job
+offer? <span class="math inline">\((B)\)</span></li>
+<li class="fragment">In which of the above firms have you worked? <span class="math inline">\((C)\)</span></li>
+</ol>
+<div class="fragment">
+<p>Note that <span class="math inline">\(A \supseteq B \supseteq
+C\)</span></p>
+</div>
+</section>
+
+<section id="references" class="title-slide slide level1">
+<h1>References</h1>
+<div>
+<ol type="1">
+<li>Granovetter, M.S. (1995) Getting a Job: A Study of Contacts and
+Careers. Harvard University Press, Cambridge, MA. <a href="https://doi.org/10.7208/chic" class="uri">https://doi.org/10.7208/chic</a>
+ago/9780226518404.001.0001</li>
+<li>Calvó-Armengol, Antoni &amp; Jackson, Matthew. (2005). Networks in
+Labor Markets: Wage and Employment Dynamics and Inequality. Journal of
+Economic Theory. 132. 27-46. <a href="https://doi.org/10.1016/j.jet.2005.07.007" class="uri">https://doi.org/10.1016/j.jet.2005.07.007</a></li>
+<li>G a, Arun &amp; Jackson, Matthew. (2012). Tractable and Consistent
+Random Graph Models. SSRN 2150428. <a href="https://doi.org/10.2139/ssrn.2150428" class="uri">https://doi.org/10.2139/ssrn.2150428</a></li>
+</ol>
+</div>
+</section>
     </div>
   </div>
 
@@ -6625,7 +6705,7 @@ potentially replicated in developing economies</li>
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+      script.src  = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>

@@ -9,7 +9,7 @@ output:
         css: out.css
         highlight: haddock
         incremental: true
-        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js'
         reveal_options:
           previewLinks: true
           progress: true
@@ -19,7 +19,7 @@ output:
         transition: slide
 ---
 
-# Research question
+# Research Question
 
 <b class="emphasized">What is the impact of private higher education in the Mexican labor market?</b>
 
@@ -30,6 +30,57 @@ output:
 - To model a relationship between schools, individual and firms using <b class="emphasized">random graphs</b>
 - To build a brand new <b class="emphasized">inequality index</b> based on education to be potentially replicated in developing economies
 
-# Example
+# Social Capital Theory
+
+1. <b class="emphasized">Resource:</b> anything that allows someone to get something done
+2. <b class="emphasized">Topology:</b> people and their relationships --- who determine the quality, diversity, and amount of resources you can potentially access
+3. <b class="emphasized">Nature of relationships:</b> you, your preferences, and your ability to build a relationship --- trust, trustworthiness, norms, obligations, expectations, or feelings of closeness
+
+# Literature Review
+
+- A significant fraction of all jobs are found through <b class="emphasized">social networks</b>
+- The <b class="emphasized">employment situation</b> of individuals that are connected, either directly or indirectly, is correlated
+- The <b class="emphasized">topology</b> of the network influences the length and correlation of <b class="emphasized">unemployment</b> among individuals
+- The size of the space of <b class="emphasized">estimation can be greatly reduced</b> by reformulating network formation as a distribution over the space of sufficient statistics instead of the space of networks
+
+# Model
+
+Probability of observing network $g$
+
+$$
+p (g; \beta) = \frac{\exp(\beta \cdot S(g))}{\sum_{g'} \exp(\beta \cdot S(g'))},
+$$
+
+where $S(g) = \left[ S_{\circ} (g), S_{-}(g), S_{\triangle} (g) \right]$
 
 ## {data-background-iframe="https://observablehq.com/embed/@utopiah/visualizating-social-vr-contact-tracing?cells=chartFromUrl"}
+
+## The MLE solves
+
+$$
+\hat{\beta} = \arg\max_\beta \beta \cdot s - \log \left[ \sum_{s'} \exp(\beta \cdot s') \right]
+$$
+
+# Data
+
+The data may not be publicly available, so we need to conduct a <b class="emphasized">survey</b> across multiple universities to obtain it
+
+1. Where do/did you study?
+2. To which of the following firms have you applied for a job? $(A)$
+3. From which of the above have you received a job offer? $(B)$
+4. In which of the above firms have you worked? $(C)$
+
+. . .
+
+Note that $A \supseteq B \supseteq C$
+
+# References
+
+::: nonincremental
+
+1. Granovetter, M.S. (1995) Getting a Job: A Study of Contacts and Careers. Harvard University Press, Cambridge, MA. https://doi.org/10.7208/chic ago/9780226518404.001.0001
+2. Calvó-Armengol, Antoni & Jackson, Matthew. (2005). Networks in Labor Markets: Wage and Employment Dynamics and Inequality. Journal of Economic Theory. 132. 27-46. https://doi.org/10.1016/j.jet.2005.07.007
+3. G a, Arun & Jackson, Matthew. (2012). Tractable and Consistent Random Graph Models. SSRN 2150428. https://doi.org/10.2139/ssrn.2150428
+
+:::
+
