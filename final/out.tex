@@ -198,9 +198,20 @@ Note that the marginal cost function is
 
 \[ c_j'(q_j) = c_1 q_j'(p). \]
 
-This way, our first order condition, \(\Pi_j'(p) = 0\), yields to
+Recall that \(q_j = M \cdot s_j\) where \(M\) is the market size and
+\(s_j\) corresponds to the firm share.
 
-\[ q_j'(p) (p_j - c_1) = 0 \iff p_j = c_1 \]
+In general, given \(J\) firms and their marginal cost functions,
+
+\[ \frac{\partial \sum_{j \in J} \Pi_j}{\partial p_j} = s_j(p) + \sum_{k \in J} (p_k - c_k') \frac{\partial s_k}{\partial p_j}. \]
+
+This is equivalent to \(s(p) + \Omega(p) (p - c')\) in matrix form,
+where \(\Omega(p)\) is the matrix
+\(\mathbf{1}_J \cdot \frac{\partial s_k}{\partial p_j}\).
+
+In our setting, this implies the following first order condition
+
+\[ s_j(p) + \sum_{k \in J} (p_k - c_1 M s_k') \frac{\partial s_k}{\partial p_j} = 0. \]
 
 Using the estimated demand function, \(\hat q_j(p)\), the expression for
 the firm's first order condition, and assuming no endogeneity concerns,
@@ -223,17 +234,28 @@ alone are incorrect because they ignore the measurement error that
 carries over from using the predictions of one model in the next model.
 
 According to \citet{quasi}, the model described before can also be fit
-using quasi-- limited-information maximum likelihood. As described in
-the article, for cases in which the models are linear (2SLS), and under
-the assumption that the errors of the models distribute normal and
-independent, the joint maximum log-likelihood function can be written as
+using quasi maximum likelihood. As described in the article, for cases
+in which the models are linear (2SLS), and under the assumption that the
+errors of the models distribute normal and independent, the joint
+maximum log-likelihood function can be written as
 
-\[ L(\theta_1, \theta_2) = L_1(\theta_1) + L_2(\theta_2, \hat{\theta}_1). \]
+\[ \ell(\theta_1, \theta_2) = \ell_1(\theta_1) + \ell_2(\theta_2, \hat{\theta}_1). \]
 
 This way, the estimation of this model would not require additional
 adjustments on the estimation of the standard errors, because the
 measurement error from \(\theta_1\) is already accounted for in the
 model.
+
+Now, suppose that we have our supply side estimates at hand,
+i.e.~\(\hat c_0\), \(\hat c_1\), \(\hat\gamma\). Suppose, too, that
+there are only two firms in the market, \(j = 1, 2\), and that you want
+to simulate new equilibrium prices, \(p^*\), that correspond to new
+values of the vector of cost shifters, \(Z^\prime\). This way, we may
+easily solve for
+
+\[ p^* = \hat{\Omega}^{-1} (p^*) \hat{s}(p^*) + \hat{c}'. \]
+
+\newpage
 
 \hypertarget{increasing-marginal-costs}{%
 \section{Increasing Marginal Costs}\label{increasing-marginal-costs}}
@@ -249,15 +271,17 @@ Note that the marginal cost function is
 
 \[ c_j'(q_j) = c_1 q_j'(p) + 2c_2q_j(p)q_j'(p). \]
 
-This way, our first order condition, \(\Pi_j'(p) = 0\), yields to
+This way, our first order condition yields to
 
-\[ q_j'(p) (p_j - c_1 - 2c_2q_j(p)) = 0 \iff p_j = c_1 + 2c_2q_j(p) \]
+\[ s_j(p) + \sum_{k \in J} (p_k - M s_k' (c_1 + 2 c_2 M s_k)) \frac{\partial s_k}{\partial p_j} = 0. \]
 
 Using the estimated demand function, \(\hat q_j(p)\), the expression for
 the firm's first order condition, and assuming no endogeneity concerns,
 we may easily apply maximum likelihood estimation on \(\theta\) with
 
-\[ \ell(p; \theta) = \sum_j \log(\Pi_j(p)) \]
+\[ \ell(p; \theta) = \sum_j \log(\Pi_j(p)). \]
+
+\newpage
 
 \bibliography{ref.bib}
 
