@@ -1,0 +1,83 @@
+---
+title: |
+  | Final Exam
+shorttitle: Empirical Industrial Organization
+shortauthors: Carlos Lezama
+author:
+- name: Carlos Lezama
+  affiliation: |
+    |
+    | Instituto Tecnológico
+    | Autónomo de México
+  address: |
+    |
+    | clezamaj\@itam.mx
+classoption: [cm, linguex]
+bibliography: ref.bib
+output: 
+  rticles::glossa_article:
+    citation_package: natbib
+    includes:
+      in_header: "preamble.tex"
+---
+
+\maketitle
+\thispagestyle{empty}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In this exam we investigate a static continuous game with complete information in the supply side. We consider two scenarios: one where the firms have constant marginal costs, and another one where firms have increasing marginal costs. We study the solution and estimation of this game.
+
+# Constant Marginal Costs
+
+Suppose that we have already estimated a demand model, thus we have estimates for the demand function of the firm, $q_j(p)$. Suppose, too, that the profit function of the firm is
+
+\[ \Pi_j(p) = p_jq_j(p) - c_j\left(q_j(p)\right) , \]
+
+where $c_j\left(q_j(p)\right) = c_0 + c_1q_j(p) + Z_j\gamma + \nu_j$, in which $c_0$, $c_1$, and $\gamma$ are unknown (to the econometrician) parameters to be estimated, $Z_j$ is a vector of cost shifters, and $\nu_j$ is a mean zero unobserved (to the econometrician) determinant of costs.
+
+Note that the marginal cost function is
+
+\[ c_j'(q_j) = c_1 q_j'(p). \]
+
+This way, our first order condition, $\Pi_j'(p) = 0$, yields to
+
+\[ q_j'(p) (p_j - c_1) = 0 \iff p_j = c_1 \]
+
+Using the estimated demand function, $\hat q_j(p)$, the expression for the firm's first order condition, and assuming no endogeneity concerns, we way follow @hackmann to estimate $\theta = (c_0, c_1, \gamma)$ through GMM. Under this suitable conditions this estimator is consistent, asymptotically normal, and, potentially, also asymptotically efficient.[^1]
+
+[^1]: With right choice of a positive-definite weighting matrix.
+
+Notice that we would need to adjust our standard errors, because we 
+are using an estimate of $q_j(p)$, which induces measurement error in your 
+estimation. To fix this, we may easily apply a two-stage estimation such 2SLS. The advantage of 2SLS estimators over other IV estimators is that 2SLS can easily combine multiple instrumental variables, and it also makes including control variables easier.
+
+However, while easy to implement, the main drawback of two-stage models has been that the estimation of standard errors from the second stage alone are incorrect because they ignore the measurement error that carries over from using the predictions of one model in the next model.
+
+According to @quasi, the model described before can also be fit using quasi– limited-information maximum likelihood. As described in the article, for cases in which the models are linear (2SLS), and under the assumption that the errors of the models distribute normal and independent, the joint maximum log-likelihood function can be written as
+
+\[ L(\theta_1, \theta_2) = L_1(\theta_1) + L_2(\theta_2, \hat{\theta}_1). \]
+
+This way, the estimation of this model would not require additional adjustments on the estimation of the standard errors, because the measurement error from $\theta_1$ is already accounted for in the model.
+
+# Increasing Marginal Costs
+
+Now, suppose that the cost function is quadratic, and of the form
+
+\[ c_j\left(q_j(p)\right) = c_0 + c_1q_j(p) + c_2q_j(p)^2 + Z_j\gamma + \nu_j , \]
+
+where $c_0$, $c_1$, $c_2$, and $\gamma$ are unknown (to the econometrician) parameters to be estimated.
+
+Note that the marginal cost function is
+
+\[ c_j'(q_j) = c_1 q_j'(p) + 2c_2q_j(p)q_j'(p). \]
+
+This way, our first order condition, $\Pi_j'(p) = 0$, yields to
+
+\[ q_j'(p) (p_j - c_1 - 2c_2q_j(p)) = 0 \iff p_j = c_1 + 2c_2q_j(p) \]
+
+Using the estimated demand function, $\hat q_j(p)$, the expression for the firm's first order condition, and assuming no endogeneity concerns, we may easily apply maximum likelihood estimation on $\theta$ with
+
+\[ \ell(p; \theta) = \sum_j \log(\Pi_j(p)) \]

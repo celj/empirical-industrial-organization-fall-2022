@@ -1,0 +1,265 @@
+% see http://info.semprag.org/basics for a full description of this template
+\documentclass[cm,linguex]{glossa}
+
+% possible options:
+% [times] for Times font (default if no option is chosen)
+% [cm] for Computer Modern font
+% [lucida] for Lucida font (not freely available)
+% [brill] open type font, freely downloadable for non-commercial use from http://www.brill.com/about/brill-fonts; requires xetex
+% [charis] for CharisSIL font, freely downloadable from http://software.sil.org/charis/
+% for the Brill an CharisSIL fonts, you have to use the XeLatex typesetting engine (not pdfLatex)
+% for headings, tables, captions, etc., Fira Sans is used: https://www.fontsquirrel.com/fonts/fira-sans
+% [biblatex] for using biblatex (the default is natbib, do not load the natbib package in this file, it is loaded automatically via the document class glossa.cls)
+% [linguex] loads the linguex example package
+% !! a note on the use of linguex: in glossed examples, the third line of the example (the translation) needs to be prefixed with \glt. This is to allow a first line with the name of the language and the source of the example. See example (2) in the text for an illustration.
+% !! a note on the use of bibtex: for PhD dissertations to typeset correctly in the references list, the Address field needs to contain the city (for US cities in the format "Santa Cruz, CA")
+
+%\addbibresource{sample.bib}
+% the above line is for use with biblatex
+% replace this by the name of your bib-file (extension .bib is required)
+% comment out if you use natbib/bibtex
+
+\let\B\relax %to resolve a conflict in the definition of these commands between xyling and xunicode (the latter called by fontspec, called by charis)
+\let\T\relax
+\usepackage{xyling} %for trees; the use of xyling with the CharisSIL font produces poor results in the branches. This problem does not arise with the packages qtree or forest.
+\usepackage[linguistics]{forest} %for nice trees!
+\usepackage{longtable}
+
+\title[Empirical Industrial Organization]{Final Exam}
+% Optional short title inside square brackets, for the running headers.
+
+% \author[Paul \& Vanden Wyngaerd]% short form of the author names for the running header. If no short author is given, no authors print in the headers.
+% {%as many authors as you like, each separated by \AND.
+%   \spauthor{Waltraud Paul\\
+%   \institute{CNRS, CRLAO}\\
+%   \small{105, Bd. Raspail, 75005 Paris\\
+%   waltraud.paul@ehess.fr}
+%   }
+%   \AND
+%   \spauthor{Guido Vanden Wyngaerd \\
+%   \institute{KU Leuven}\\
+%   \small{Warmoesberg 26, 1000 Brussel\\
+%   guido.vandenwyngaerd@kuleuven.be}
+%   }%
+% }
+
+\author[Carlos Lezama]{
+    \spauthor{Carlos Lezama\\
+  \institute{\hfill\break
+Instituto Tecnológico\\
+Autónomo de México}\\
+  \small{\hfill\break
+clezamaj@itam.mx}
+  }%
+  }
+
+\usepackage{natbib}
+
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+
+
+\usepackage{multirow, array}
+\usepackage{amsmath, amsthm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+\newcommand{\dnorm}{\mathcal{N}}
+\newcommand{\dunif}{\mathcal{U}}
+\newcommand{\ev}{\text{E}}
+\newcommand{\iid}{\text{i.i.d.}}
+
+\newtheoremstyle{defn}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{defn}
+\newtheorem{defn}{Definition}
+
+\newtheoremstyle{axiom}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{axiom}
+\newtheorem{axiom}{A\!\!}
+
+\newtheoremstyle{thm}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{thm}
+\newtheorem{thm}{Theorem}
+
+\newtheoremstyle{lem}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{lem}
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheoremstyle{cor}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{cor}
+\newtheorem{cor}{Corollary}[thm]
+
+\newtheoremstyle{prop}
+{}                % Space above
+{}                % Space below
+{\mdseries}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\newtheoremstyle{rmk}
+{}                % Space above
+{}                % Space below
+{\itshape}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\slshape\sffamily}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{rmk}
+\newtheorem*{rmk}{Remark}
+
+\begin{document}
+
+
+\sffamily
+\maketitle
+
+
+
+\rmfamily
+
+%  Body of the article
+\maketitle
+\thispagestyle{empty}
+
+In this exam we investigate a static continuous game with complete
+information in the supply side. We consider two scenarios: one where the
+firms have constant marginal costs, and another one where firms have
+increasing marginal costs. We study the solution and estimation of this
+game.
+
+\hypertarget{constant-marginal-costs}{%
+\section{Constant Marginal Costs}\label{constant-marginal-costs}}
+
+Suppose that we have already estimated a demand model, thus we have
+estimates for the demand function of the firm, \(q_j(p)\). Suppose, too,
+that the profit function of the firm is
+
+\[ \Pi_j(p) = p_jq_j(p) - c_j\left(q_j(p)\right) , \]
+
+where \(c_j\left(q_j(p)\right) = c_0 + c_1q_j(p) + Z_j\gamma + \nu_j\),
+in which \(c_0\), \(c_1\), and \(\gamma\) are unknown (to the
+econometrician) parameters to be estimated, \(Z_j\) is a vector of cost
+shifters, and \(\nu_j\) is a mean zero unobserved (to the
+econometrician) determinant of costs.
+
+Note that the marginal cost function is
+
+\[ c_j'(q_j) = c_1 q_j'(p). \]
+
+This way, our first order condition, \(\Pi_j'(p) = 0\), yields to
+
+\[ q_j'(p) (p_j - c_1) = 0 \iff p_j = c_1 \]
+
+Using the estimated demand function, \(\hat q_j(p)\), the expression for
+the firm's first order condition, and assuming no endogeneity concerns,
+we way follow \citet{hackmann} to estimate
+\(\theta = (c_0, c_1, \gamma)\) through GMM. Under this suitable
+conditions this estimator is consistent, asymptotically normal, and,
+potentially, also asymptotically efficient.\footnote{With right choice
+  of a positive-definite weighting matrix.}
+
+Notice that we would need to adjust our standard errors, because we are
+using an estimate of \(q_j(p)\), which induces measurement error in your
+estimation. To fix this, we may easily apply a two-stage estimation such
+2SLS. The advantage of 2SLS estimators over other IV estimators is that
+2SLS can easily combine multiple instrumental variables, and it also
+makes including control variables easier.
+
+However, while easy to implement, the main drawback of two-stage models
+has been that the estimation of standard errors from the second stage
+alone are incorrect because they ignore the measurement error that
+carries over from using the predictions of one model in the next model.
+
+According to \citet{quasi}, the model described before can also be fit
+using quasi-- limited-information maximum likelihood. As described in
+the article, for cases in which the models are linear (2SLS), and under
+the assumption that the errors of the models distribute normal and
+independent, the joint maximum log-likelihood function can be written as
+
+\[ L(\theta_1, \theta_2) = L_1(\theta_1) + L_2(\theta_2, \hat{\theta}_1). \]
+
+This way, the estimation of this model would not require additional
+adjustments on the estimation of the standard errors, because the
+measurement error from \(\theta_1\) is already accounted for in the
+model.
+
+\hypertarget{increasing-marginal-costs}{%
+\section{Increasing Marginal Costs}\label{increasing-marginal-costs}}
+
+Now, suppose that the cost function is quadratic, and of the form
+
+\[ c_j\left(q_j(p)\right) = c_0 + c_1q_j(p) + c_2q_j(p)^2 + Z_j\gamma + \nu_j , \]
+
+where \(c_0\), \(c_1\), \(c_2\), and \(\gamma\) are unknown (to the
+econometrician) parameters to be estimated.
+
+Note that the marginal cost function is
+
+\[ c_j'(q_j) = c_1 q_j'(p) + 2c_2q_j(p)q_j'(p). \]
+
+This way, our first order condition, \(\Pi_j'(p) = 0\), yields to
+
+\[ q_j'(p) (p_j - c_1 - 2c_2q_j(p)) = 0 \iff p_j = c_1 + 2c_2q_j(p) \]
+
+Using the estimated demand function, \(\hat q_j(p)\), the expression for
+the firm's first order condition, and assuming no endogeneity concerns,
+we may easily apply maximum likelihood estimation on \(\theta\) with
+
+\[ \ell(p; \theta) = \sum_j \log(\Pi_j(p)) \]
+
+\bibliography{ref.bib}
+
+
+\end{document}
